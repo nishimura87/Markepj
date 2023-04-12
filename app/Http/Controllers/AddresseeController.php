@@ -54,10 +54,11 @@ class AddresseeController extends Controller
 
         $session = $request->session()->get('back_url');
         $request->session()->forget('back_url');
+        
         if($session == 'member'){
             return redirect()->route('infoUser');
         }
-        elseif($session == 'order'){
+        if($session == 'order'){
             return redirect()->route('cartList');
         }
     }

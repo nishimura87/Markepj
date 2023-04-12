@@ -60,14 +60,16 @@ class PaymentController extends Controller
             return redirect()->route('infoPayment')->with('errors', '申し訳ありません、通信状況の良い場所で再度ご登録をしていただくか、しばらく立ってから再度登録を行ってみてください。');
         }
 
-        if($request->session()->has('cart_url')){
-            
-            $request->session()->forget('cart_url');
-
-            return redirect()->route('cartList');
+        $session = $request->session()->get('back_url');
+        $request->session()->forget('back_url');
+        
+        if($session == 'member'){
+            return redirect()->route('infoPayment')->with("success", "カード情報の登録が完了しました。");
         }
 
-        return redirect()->route('infoPayment')->with("success", "カード情報の登録が完了しました。");
+        if($session == 'order'){
+            return redirect()->route('cartList');
+        }
     }
 
     public function destroyPayment(){

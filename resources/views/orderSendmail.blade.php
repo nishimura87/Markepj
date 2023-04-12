@@ -50,5 +50,5 @@ e-mail:{{ $user->email }}<br>
 
 ***********お問い合わせ***********<br>
 メールによるお問い合わせ:marke.b.2023@gmail.com<br>
-Marke:http://127.0.0.1:8000/marke/contact<br>
+Marke:http://54.173.240.254/marke/contact<br>
 ********************************

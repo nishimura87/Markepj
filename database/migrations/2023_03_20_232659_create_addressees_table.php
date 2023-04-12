@@ -16,13 +16,13 @@ class CreateAddresseesTable extends Migration
         Schema::create('addressees', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id');
+            $table->string('name');
+            $table->string('kana');
             $table->char('postcode');
             $table->string('address');
             $table->string('building')->nullable();
-            $table->timestamps();
             $table->string('phone_number',20);
-            $table->string('name');
-            $table->string('kana');
+            $table->timestamps();
         });
     }
 

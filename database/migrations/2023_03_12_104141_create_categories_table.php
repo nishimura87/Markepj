@@ -18,6 +18,35 @@ class CreateCategoriesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        $qb = \DB::table('categories');
+        $insert = [
+            [
+                'id' => 1,
+                'name' => 'トップス',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 2,
+                'name' => 'アウター',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 3,
+                'name' => 'パンツ',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ],
+            [
+                'id' => 4,
+                'name' => 'ソックス',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s')
+            ]
+            ];
+        $qb->insert($insert);
     }
 
     /**

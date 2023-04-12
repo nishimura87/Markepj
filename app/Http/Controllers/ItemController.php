@@ -400,6 +400,8 @@ class ItemController extends Controller
         $user = Auth::user();
         $addressee = Addressee::where('user_id','=',$user->id )->first();
 
+        $request->session()->put('back_url', 'order');
+
         if ($request->session()->has('cartData')) {
             $cartData = array_values($request->session()->get('cartData'));
         }
@@ -429,8 +431,8 @@ class ItemController extends Controller
 
         return view('order', compact('cartData','totalData','count','totalAmount','user','items','addressee','defaultCard'));
         }
+        
         else {
-            $request->session()->put('cart_url', $request->fullUrl());
             $errors = "購入手続きにはクレジットカードを登録してください";
             return redirect()->route('infoPayment')->with('errors', $errors);
         }

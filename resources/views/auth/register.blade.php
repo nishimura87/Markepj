@@ -15,10 +15,11 @@
                 <div class="form-item-con">
                     <input type="text" class="input_text1" name=name value="{{ old('name') }}">
                 </div>
-            </div>
             @error('name')
             <div class="alert">{{ $message }}</div>
             @enderror
+            </div>
+            
 
             <!-- Kana -->
             <div class="form-item">
@@ -26,21 +27,21 @@
                 <div class="form-item-con">
                     <input type="text" class="input_text1" name=kana value="{{ old('kana') }}">
                 </div>
+                @error('kana')
+                <div class="alert">{{ $message }}</div>
+                @enderror
             </div>
-            @error('kana')
-            <div class="alert">{{ $message }}</div>
-            @enderror
-
+            
             <!-- Email Address -->
             <div class="form-item">
                 <p class="form-item-label">メールアドレス<span class ="red"> ※</span></p>
                 <div class="form-item-con">
                     <input type="email" class="input_text1" name=email value="{{ old('email') }}">
                 </div>
+                @error('email')
+                <div class="alert">{{ $message }}</div>
+                @enderror
             </div>
-            @error('email')
-            <div class="alert">{{ $message }}</div>
-            @enderror
 
             <!-- Password -->
             <div class="form-item">
@@ -48,10 +49,10 @@
                 <div class="form-item-con">
                     <input type="password" class="input_text1" name=password>
                 </div>
+                @error('password')
+                <div class="alert">{{ $message }}</div>
+                @enderror
             </div>
-            @error('password')
-            <div class="alert">{{ $message }}</div>
-            @enderror
 
             <!-- Postcode -->
             <div class="form-item">
@@ -60,10 +61,11 @@
                     <a class="postcode_mark">〒</a>
                     <input type="text" class="input_text1" name=postcode value="{{ old('postcode') }}">
                 </div>
+                @error('postcode')
+                <div class="alert">{{ $message }}</div>
+                @enderror
             </div>
-            @error('postcode')
-            <div class="alert">{{ $message }}</div>
-            @enderror
+            
 
             <!-- address -->
             <div class="form-item">
@@ -71,10 +73,10 @@
                 <div class="form-item-con">
                     <input type="text" class="input_text1" name=address value="{{ old('address') }}">
                 </div>
+                @error('address')
+                <div class="alert">{{ $message }}</div>
+                @enderror
             </div>
-            @error('address')
-            <div class="alert">{{ $message }}</div>
-            @enderror
 
             <!-- building -->
             <div class="form-item">
@@ -90,10 +92,10 @@
                 <div class="form-item-con">
                     <input type="text" class="input_text1" name=phone_number value="{{ old('phone_number') }}">
                 </div>
+                @error('phone_number')
+                <div class="alert">{{ $message }}</div>
+                @enderror
             </div>
-            @error('phone_number')
-            <div class="alert">{{ $message }}</div>
-            @enderror
 
             <div class="flex items-center justify-center mt-4">
                 <button class="register_btn">

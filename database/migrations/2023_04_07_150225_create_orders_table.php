@@ -21,6 +21,7 @@ class CreateOrdersTable extends Migration
             $table->char('postcode');
             $table->string('address');
             $table->string('building')->nullable();
+            $table->integer('order_number');
             $table->timestamps();
         });
     }

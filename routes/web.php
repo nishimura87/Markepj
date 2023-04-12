@@ -23,29 +23,13 @@ Route::post('/marke/contact/confirm', [ContactController::class, 'confirm'])->na
 Route::post('marke/contact/thanks', [ContactController::class, 'send'])->name('send');
 
 Route::get('/member', [MemberController::class, 'infoUser'])->name('infoUser');
-Route::get('/member/edit', [MemberController::class, 'editUser'])->name('editUser');
-Route::get('/member/orderhistory', [MemberController::class, 'orderHistory'])->name('orderHistory');
-Route::post('/member/edit', [MemberController::class, 'updateUser'])->name('updateUser');
-Route::get('/member/password', [MemberController::class, 'editPassword'])->name('editPassword');
-Route::post('/member/password', [MemberController::class, 'updatePassword'])->name('updatePassword');
-
-Route::get('/member/addressee/store',
-[AddresseeController::class, 'createAddressee'])->name('createAddressee');
-Route::post('/member/addressee/store/complete',
-[AddresseeController::class, 'storeAddressee'])->name('storeAddressee');
-
-Route::get('/member/payment', [PaymentController::class, 'infoPayment'])->name('infoPayment');
-Route::get('/member/payment/form', [PaymentController::class, 'createPayment'])->name('createPayment');
-Route::post('/member/payment/form', [PaymentController::class, 'storePayment'])->name('storePayment');
-Route::post('/member/payment/destroy', [PaymentController::class, 'destroyPayment'])->name('destroyPayment');
-
-Route::get('/marke/cart/charge/complete', [OrderController::class, 'completeCharge'])->name('completeCharge');
-Route::post('/marke/cart/charge/complete', [OrderController::class, 'charge'])->name('charge');
-
 
 Route::get('/marke', [ItemController::class, 'home'])->name('home');
 Route::get('/marke/item/category/{name}', [ItemController::class, 'categoryItem'])->name('categoryItem');
 Route::get('/marke/item/{id}', [ItemController::class, 'showItem'])->name('showItem');
+
+Route::get('/marke/news', [NewsController::class, 'news'])->name('news');
+Route::get('/marke/news/{id}', [NewsController::class, 'showNews'])->name('showNews');
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/admin/orderhistory', [MemberController::class, 'orderHistory'])->name('orderHistory');
@@ -69,16 +53,32 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 Route::middleware(['auth', 'verified'])->group(function () {
+    Route::get('/member/orderhistory', [MemberController::class, 'orderHistory'])->name('orderHistory');
+    Route::get('/member/edit', [MemberController::class, 'editUser'])->name('editUser');
+    Route::get('/member/password', [MemberController::class, 'editPassword'])->name('editPassword');
+    Route::post('/member/edit', [MemberController::class, 'updateUser'])->name('updateUser');
+    Route::post('/member/password', [MemberController::class, 'updatePassword'])->name('updatePassword');
+
+    Route::get('/member/addressee/store',
+    [AddresseeController::class, 'createAddressee'])->name('createAddressee');
+    Route::post('/member/addressee/store/complete',
+    [AddresseeController::class, 'storeAddressee'])->name('storeAddressee');
+
     Route::get('/marke/cart', [ItemController::class, 'cartList'])->name('cartList');
     Route::post('/marke/cart', [ItemController::class, 'addCart'])->name('addCart');
     Route::post('/marke/cart/remove', [ItemController::class, 'removeCart'])->name('removeCart');
     Route::post('/marke/cart/update', [ItemController::class, 'updateCart'])->name('updateCart');
     Route::post('/marke/cart/order', [ItemController::class, 'orderItem'])->name('orderItem');
     Route::post('/marke/cart/purchase', [ItemController::class, 'purchaseItem'])->name('purchaseItem');
-});
 
-Route::get('/marke/news', [NewsController::class, 'news'])->name('news');
-Route::get('/marke/news/{id}', [NewsController::class, 'showNews'])->name('showNews');
+    Route::get('/member/payment', [PaymentController::class, 'infoPayment'])->name('infoPayment');
+    Route::get('/member/payment/form', [PaymentController::class, 'createPayment'])->name('createPayment');
+    Route::post('/member/payment/form', [PaymentController::class, 'storePayment'])->name('storePayment');
+    Route::post('/member/payment/destroy', [PaymentController::class, 'destroyPayment'])->name('destroyPayment');
+
+    Route::get('/marke/cart/charge/complete', [OrderController::class, 'completeCharge'])->name('completeCharge');
+    Route::post('/marke/cart/charge/complete', [OrderController::class, 'charge'])->name('charge');
+});
 
 
 Route::get('/', function () {
