@@ -5,13 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Payment;
+use Stripe\Stripe;
+use Stripe\Customer;
+use Stripe\Charge;
 
 class PaymentController extends Controller
 {
     public function infoPayment(Request $request)
     {
-        $user = Auth::user(); //要するにUser情報を取得したい
+        $user = Auth::user();
         $defaultCard = Payment::getDefaultcard($user);
+
         return view('payment.info',  compact('user', 'defaultCard'));
     }
 
@@ -22,30 +26,11 @@ class PaymentController extends Controller
 
     public function storePayment(Request $request)
     {
-        /**
-         * フロントエンドから送信されてきたtokenを取得
-         * これがないと一切のカード登録が不可
-         **/
         $token = $request->stripeToken;
-        $user = \Auth::user(); //要するにUser情報を取得したい
+        $user = \Auth::user();
         $ret = null;
 
-        /**
-         * 当該ユーザーがtokenもっていない場合Stripe上でCustomer（顧客）を作る必要がある
-         * これがないと一切のカード登録が不可
-         **/
         if ($token) {
-
-            /**
-             *  Stripe上にCustomer（顧客）が存在しているかどうかによって処理内容が変わる。
-             *
-             * 「初めての登録」の場合は、Stripe上に「Customer（顧客」と呼ばれる単位の登録をして、その後に
-             * クレジットカードの登録が必要なので、一連の処理を内包しているPaymentモデル内のsetCustomer関数を実行
-             *
-             * 「2回目以降」の登録（別のカードを登録など）の場合は、「Customer（顧客」を新しく登録してしまうと二重顧客登録になるため、
-             *  既存のカード情報を取得→削除→新しいカード情報の登録という流れに。
-             *
-             **/
 
             if (!$user->stripe_id) {
                 $result = Payment::setCustomer($token, $user);
@@ -53,7 +38,7 @@ class PaymentController extends Controller
                 /* card error */
                 if(!$result){
                     $errors = "カード登録に失敗しました。入力いただいた内容に相違がないかを確認いただき、問題ない場合は別のカードで登録を行ってみてください。";
-                    return redirect('/member/payment')->with('errors', $errors);
+                    return redirect()->route('infoPayment')->with('errors', $errors);
                 }
 
             } else {
@@ -67,28 +52,33 @@ class PaymentController extends Controller
                 /* card error */
                 if(!$result){
                     $errors = "カード登録に失敗しました。入力いただいた内容に相違がないかを確認いただき、問題ない場合は別のカードで登録を行ってみてください。";
-                    return redirect('/member/payment')->with('errors', $errors);
+                    return redirect()->route('infoPayment')->with('errors', $errors);
                 }
 
             }
         } else {
-            return redirect('/member')->with('errors', '申し訳ありません、通信状況の良い場所で再度ご登録をしていただくか、しばらく立ってから再度登録を行ってみてください。');
+            return redirect()->route('infoPayment')->with('errors', '申し訳ありません、通信状況の良い場所で再度ご登録をしていただくか、しばらく立ってから再度登録を行ってみてください。');
         }
 
+        if($request->session()->has('cart_url')){
+            
+            $request->session()->forget('cart_url');
 
-        return redirect('/member')->with("success", "カード情報の登録が完了しました。");
+            return redirect()->route('cartList');
+        }
+
+        return redirect()->route('infoPayment')->with("success", "カード情報の登録が完了しました。");
     }
 
-    public function deletePaymentInfo(){
-        $user = User::find(Auth::id());
+    public function destroyPayment(){
+        $user = Auth::user();
 
         $result = Payment::deleteCard($user);
 
         if($result){
-            return redirect('/user/payment')->with('success', 'カード情報の削除が完了しました。');
+            return redirect()->route('infoPayment')->with('success', 'カード情報の削除が完了しました。');
         }else{
-            return redirect('/user/payment')->with('errors', 'カード情報の削除に失敗しました。恐れ入りますが、通信状況の良い場所で再度お試しいただくか、しばらく経ってから再度お試しください。');
+            return redirect()->route('infoPayment')->with('errors', 'カード情報の削除に失敗しました。恐れ入りますが、通信状況の良い場所で再度お試しいただくか、しばらく経ってから再度お試しください。');
         }
     }
-
 }

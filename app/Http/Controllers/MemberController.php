@@ -5,12 +5,30 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Order;
 
 class MemberController extends Controller
 {
     public function infoUser(Request $request)
     {
-        return view('member.info');
+        $user = Auth::user();
+        if(!$user){
+            return redirect()->route('login');
+        }
+
+        if($user){
+            $request->session()->put('back_url', 'member');
+
+            $addressee = $user->addressees->first();
+
+            if(empty($addressee)){
+                return view('member.info');
+            }
+
+            if(!empty($addressee)){
+                return view('member.info',compact('addressee'));
+            }
+        }
     }
 
     public function editUser(Request $request)
@@ -31,7 +49,7 @@ class MemberController extends Controller
             'phone_number' => $request->phone_number,
             ])->save();
 
-        return redirect('/member');
+        return redirect()->route('infoUser');
     }
 
     public function editPassword()
@@ -72,5 +90,19 @@ class MemberController extends Controller
 
         return redirect ('/member')
         ->with('status','パスワードの変更が終了しました'); 
+    }
+
+    public function orderHistory(Request $request)
+    {
+        $user = Auth::user();
+        $orders = $user->orders()->latest()->get();
+
+        $ordersAll = Order::latest()->get();
+
+        if($user->role=='admin'){
+            return view('admin.orderHistory',compact('ordersAll'));
+        }
+
+        return view('member.orderHistory',compact('orders'));
     }
 }

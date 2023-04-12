@@ -1,11 +1,9 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Auth;
-use Laravel\Cashier\Cashier;
 
 class Payment extends Model
 {
@@ -27,6 +25,7 @@ class Payment extends Model
         try {
             $customer = \Stripe\Customer::create([
                 'card' => $token,
+                'email'  => $user->email,
                 'name' => $user->name,
                 'description' => $user->id
             ]);
@@ -45,14 +44,13 @@ class Payment extends Model
 
         $targetCustomer = null;
         if (isset($customer->id)) {
-            $targetCustomer = User::find(\Auth::id());//要するに当該顧客のデータをUserテーブルから引っ張りたい
+            $targetCustomer = User::find(\Auth::id());
             $targetCustomer->stripe_id = $customer->id;
             $targetCustomer->update();
             return true;
         }
         return false;
     }
-
 
     /**
      * Stripe上の「顧客」情報を更新するための関数
@@ -67,15 +65,12 @@ class Payment extends Model
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret'));
 
         try {
-            $customer = \Stripe\Customer::retrieve($user->stripe_id);
-            $card = $customer->sources->create(['source' => $token]);
-
-            if (isset($customer)) {
-                $customer->default_source = $card["id"];
-                $customer->save();
-                return true;
-            }
-
+            $customer = \Stripe\Customer::create([
+                'card' => $token,
+                'email'  => $user->email,
+                'name' => $user->name,
+                'description' => $user->id
+            ]);
         } catch(\Stripe\Exception\CardException $e) {
             /*
              * カード登録失敗時には現段階では一律で別の登録カードを入れていただくように
@@ -88,9 +83,17 @@ class Payment extends Model
              *  */
             return false;
         }
-        return true;
-    }
+        $targetCustomer = null;
+        if (isset($customer->id)) {
+            $targetCustomer = User::find(\Auth::id());
+            $targetCustomer->stripe_id = $customer->id;
+            $targetCustomer->update();
 
+            return true;
+        }
+        return false;
+    }
+ 
     /**
      * Stripe上に現在登録されている顧客の「使用カード」の情報を取得するための関数
      *
@@ -105,18 +108,17 @@ class Payment extends Model
 
         $default_card = null;
 
-        if (!empty($user->stripe_id)) {
+        if (!is_null($user->stripe_id)) {
             $customer = \Stripe\Customer::retrieve($user->stripe_id);
-
             if (isset($customer['default_source']) && $customer['default_source']) {
 
-                $card = $customer->sources->data[0];
+                $card = \Stripe\PaymentMethod::all(['customer' => $user->stripe_id, 'type' => 'card'])->data[0];
                 $default_card = [
-                    'number' => str_repeat('*', 8) . $card->last4,
-                    'brand' => $card->brand,
-                    'exp_month' => $card->exp_month,
-                    'exp_year' => $card->exp_year,
-                    'name' => $card->name,
+                    'number' => str_repeat('*', 8) . $card->card->last4,
+                    'brand' => $card->card->brand,
+                    'exp_month' => $card->card->exp_month,
+                    'exp_year' => $card->card->exp_year,
+                    'name' => $card->billing_details->name,
                     'id' => $card->id,
                 ];
             }
@@ -133,16 +135,18 @@ class Payment extends Model
     protected static function deleteCard($user)
     {
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret'));
-        $customer = \Stripe\Customer::retrieve($user->stripe_id);
-        $card = $customer->sources->data[0];
+        $stripe = new \Stripe\StripeClient(\Config::get('payment.stripe_secret'));
+        $card = \Stripe\PaymentMethod::all(['customer' => $user->stripe_id, 'type' => 'card'])->data[0];
 
-        var_dump($card,"カード");
         /* card情報が存在していれば削除 */
         if ($card) {
-            \Stripe\Customer::deleteSource(
-                $user->stripe_id,
-                $card->id
+            $stripe->customers->delete(
+            $user->stripe_id,
+            []
             );
+            $targetCustomer = User::find(\Auth::id());
+            $targetCustomer->stripe_id = NULL;
+            $targetCustomer->update();
             return true;
         }
         return false;

@@ -1,8 +1,8 @@
-@component('components.header')
-@endcomponent
+@extends('layouts.template')
+@section('content')
 <x-guest-layout>
     <div class="main_title">
-        <h1>会員登録</h1>
+        <h1>REGISTER</h1>
     </div>
     <x-auth-card>
         <form method="POST" action="{{ route('register') }}">
@@ -102,11 +102,10 @@
             </div>
         </form>
         <div class="justify-end flex mt-4">
-            <a class="login_txt" href="{{ route('login') }}">
+            <a class="login_txt text-sm" href="{{ route('login') }}">
                 {{ __('アカウントをお持ちの方はこちら') }}
             </a>
         </div>
     </x-auth-card>
 </x-guest-layout>
-@component('components.footer')
-@endcomponent
+@endsection

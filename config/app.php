@@ -106,7 +106,7 @@ return [
     |
     */
 
-    'faker_locale' => 'en_US',
+    'faker_locale' => 'ja_JP',
 
     /*
     |--------------------------------------------------------------------------
@@ -174,7 +174,6 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
-
     ],
 
     /*
@@ -230,7 +229,10 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
+        'InterventionImage' => Intervention\Image\Facades\Image::class,
     ],
 
+    'stripe_public' => env('STRIPE_PUBLIC'),
+    'stripe_secret' => env('STRIPE_SECRET'),
+    'stripe_connect_client_id' => env('CONNECT_CLIENT_ID'),
 ];

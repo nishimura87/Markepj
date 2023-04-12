@@ -1,5 +1,5 @@
-@component('components.header')
-@endcomponent
+@extends('layouts.template')
+@section('content')
 <x-guest-layout>
     <div class="main_title">
         <h1>パスワードリセット</h1>
@@ -33,5 +33,4 @@
         </form>
     </x-auth-card>
 </x-guest-layout>
-@component('components.footer')
-@endcomponent
+@endsection

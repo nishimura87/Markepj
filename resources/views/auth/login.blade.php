@@ -1,13 +1,12 @@
-@component('components.header')
-@endcomponent
+@extends('layouts.template')
+@section('content')
 <x-guest-layout>
     <div class="main_title">
-        <h1>ログイン・会員登録</h1>
+        <h1>LOGIN</h1>
     </div>
     <x-auth-card>
-        <div class="flex w-full">
+        <div class="w-full">
             <div class="login_title">ログイン</div>
-            <div class="login_register_title">新規会員</div>
         </div>
         <div class="login_register flex sm\:justify-between">
             <div class="login w-full"> 
@@ -51,10 +50,14 @@
 
                         <div class="flex items-center justify-end mt-4">
                             @if (Route::has('password.request'))
-                            <a class="underline text-sm link" href="{{ route('password.request') }}">
+                            <a class="underline text-sm link " href="{{ route('password.request') }}">
                                 {{ __('パスワードを忘れた方はこちら') }}
+                            </a>                            @endif
+                        </div>
+                        <div class="flex items-center justify-end mt-4">
+                            <a class="underline text-sm link" href="{{ route('register') }}">
+                            {{ __('新規会員登録の方はこちら') }}
                             </a>
-                            @endif
                         </div>
                         <button class="login_btn">
                             {{ __('ログイン') }}
@@ -62,24 +65,7 @@
                     </div>
                 </form>
             </div>
-
-            <div class="register w-full"> 
-                <form method="GET" action="{{ route('register') }}">
-                    
-                        <div class="px-4">
-                            <div class="register_txt">
-                                <p>オンラインストアをご使用いただくには、会員登録が必要です。</p>
-                                <p>下記より新規会員登録をお願いします。</p>
-                            </div>
-                            <button class="register_btn">
-                                {{ __('会員登録') }}
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
         </div>
     </x-auth-card>
 </x-guest-layout>
-@component('components.footer')
-@endcomponent
+@endsection

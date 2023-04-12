@@ -17,17 +17,17 @@
     </div>
     <div class="about_image">
       <div class="about_image_con">
-        <a href=""><img class="about_image_sns" src="/images/twitter_color.png" width="40px"></a>
+        <a href="https://twitter.com/Marke2023"><img class="about_image_sns" src="/images/twitter_color.png" width="40px"></a>
         <a class=about_image_txt>twitter</a>
       </div>
       <div class="about_image_con">
-        <a href=""><img class="about_image_sns" src="/images/instagram_color.png" width="40px"></a>
+        <a href="https://z-p15.www.instagram.com/marke2023_test/"><img class="about_image_sns" src="/images/instagram_color.png" width="40px"></a>
         <a class=about_image_txt>instagram</a>
       </div>
     </div>
   </div>
   <div class="about_map">
-    <div id="map" style="height:250px"></div>
+    <div id="map" class="about_map_size"></div>
   </div>  
 </div>
 <script src="{{ asset('/js/result.js') }}"></script>

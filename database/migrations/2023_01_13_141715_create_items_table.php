@@ -15,7 +15,6 @@ class CreateItemsTable extends Migration
     {
         Schema::create('items', function (Blueprint $table) {
             $table->id();
-            $table->integer('admin_user_id');
             $table->integer('user_id');
             $table->string('title');
             $table->integer('ptice');

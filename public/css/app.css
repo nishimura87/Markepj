@@ -992,7 +992,7 @@ select {
   font-family: Nunito, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 .text-sm {
-  font-size: 0.875rem;
+  font-size: 0.8rem;
   line-height: 1.25rem;
 }
 .text-lg {
@@ -1334,8 +1334,8 @@ header {
   position: fixed;
   right: -100%;
   top: 0;
-  width: 15%;
-  height: 20vh;
+  width: 150px;
+  height: 130px;
   background-color: #fff;
   transition: all 0.5s;
   z-index: 200;
@@ -1399,7 +1399,6 @@ header {
   border-color: rgb(188, 188, 188);
 }
 .login_title { 
-  width: 50%;
   padding-bottom: 10px;
   text-align: center;
   font-weight: bold;
@@ -1476,6 +1475,7 @@ footer {
 }
 .login_txt {
   color: blue;
+  text-decoration:underline
 }
 .form-item {
   margin-bottom: 10px;

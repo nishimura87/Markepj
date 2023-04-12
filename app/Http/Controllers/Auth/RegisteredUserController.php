@@ -66,11 +66,7 @@ class RegisteredUserController extends Controller
             'phone_number.digits_between' => '電場番号は8〜11文字の数字で入力してください',
         ]);
 
-        //通常会員は見れる画面を制限する 
-        $role = 1;
-
         $user = User::create([
-            'role' => $role,
             'name' => $request->name,
             'kana' => $request->kana,
             'email' => $request->email,

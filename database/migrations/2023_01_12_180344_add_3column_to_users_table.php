@@ -14,7 +14,7 @@ class Add3columnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->integer('role');
+            $table->$table->enum('role', ['member', 'admin'])->default('member');
             $table->string('kana');
             $table->string('phone_number');
         });

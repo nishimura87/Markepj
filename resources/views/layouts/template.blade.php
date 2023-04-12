@@ -8,8 +8,7 @@
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
   <title>@yield('title')</title>
   <script src="{{ asset('js/app.js') }}" defer></script>
-  
-  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 <header>
@@ -21,25 +20,25 @@
   <div class="header_right flex">
     <ul class="nav">
       <li class="has-sub">
-        <a href="/member"><img src="/images/user.png" width="25" height="25"></a>
+        <a class="sub-item" href="{{ route('infoUser') }}"><img src="/images/user.png" width="25" height="25"></a>
         <ul class="sub">
           @guest
           <li>
-            <a href="/login">ログイン</a>
+            <a class="sub-item" href="/login">ログイン</a>
           </li>
           @endguest
           <li>
           @auth 
-            <a href="/member">会員情報</a>
+            <a class="sub-item" href="/member">会員情報</a>
           </li>
           <li>
-            <a href="/logout">ログアウト</a>
+            <a class="sub-item" href="/logout">ログアウト</a>
           </li>
           @endauth
         </ul>
       </li>
     </ul>
-    <a class="header_right_con" href=""><img src="/images/cart.png" width="30" height="30"></a>
+    <a class="header_right_con" href="{{ route('cartList') }}"><img src="/images/cart.png" width="30" height="30"></a>
     <div id="nav-wrapper" class="nav-wrapper header_right">
       <div class="hamburger" id="js-hamburger">
         <span class="hamburger__line hamburger__line--1"></span>
@@ -47,7 +46,7 @@
         <span class="hamburger__line hamburger__line--3"></span>
       </div>
       <nav class="sp-nav">
-        <ul>
+        <ul class="sp-nav-ul">
           <li><a href="/marke">TOP</a></li>
           <li><a href="/marke/about">ABOUT</a></li>
           <li><a href="/marke/news">NEWS</a></li>
@@ -58,19 +57,18 @@
     </div>
   </div>
 </header>
-
   <main>
     @yield('content')
   </main>
 
   <footer>
     <div class="flex justify-center">
-        <a class="link_con" href=""><img src="/images/twitter.jpg" width="25" height="25"></a>
-        <a class="link_con" href=""><img src="/images/instagram.jpg" width="25" height="25"></a>
+      <a class="link_con" href="https://twitter.com/Marke2023"><img src="/images/twitter.jpg" width="25" height="25"></a>
+      <a class="link_con" href="https://z-p15.www.instagram.com/marke2023_test/"><img src="/images/instagram.jpg" width="25" height="25"></a>
     </div>
     <div class="flex">
-      <a class="important_con" href="">プライバシーポリシー</a>
-      <a class="important_con" href="">特定商取引に基づく表記</a>
+      <a class="important_con" href="/marke/privacy">プライバシーポリシー</a>
+      <a class="important_con" href="/marke/law">特定商取引に基づく表記</a>
     </div>
     <div class="copy_light">&copy 2023 MARKE inc.</div>
   </footer> 
@@ -115,5 +113,52 @@
   var stripe_key = '{{ config('payment.stripe_key') }}';
 </script>
 <script src="{{ asset('js/payment.js') }}"></script>
+<script>
+  if(window.matchMedia("(max-width:768px)").matches){
+        var init = 9  //初期表示数
+        var more = 3  //追加表示数
+      }else if (window.matchMedia("(min-width:769px)").matches){
+        var init = 10  //初期表示数
+        var more = 5  //追加表示数
+      }
+
+  // 初期表示数以降のリストを非表示に
+  $(".item_list li:nth-child(n+" + (init+1) + ")").hide()
+
+  //初期表示数以下であればMoreボタンを非表示
+  $(".item_list").filter(function(){
+      return $(this).find("li").length <= init
+  }).find(".more-btn").hide()    
+
+  // Moreボタンクリックで指定数表示
+  $(".more-btn").on("click",function(){
+      let this_list = $(this).closest(".item_list")
+      this_list.find("li:hidden").slice(0,more).slideToggle()
+
+      if(this_list.find("li:hidden").length == 0){
+          $(this).fadeOut()
+      }
+  })
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+$(function()
+{
+	$(".sub_img dt").eq(0).addClass("select");
+	$(".sub_img img").click(function()
+	{
+		var img = $(this).attr("src");
+
+		$(".sub_img dt").removeClass("select");
+		$(this).parent().addClass("select");
+
+		$(".main_img img").fadeOut(500, function()
+		{
+			$(this).attr("src", img),
+			$(this).fadeIn(500)
+		});
+	});
+});
+</script>
 </body>
 </html>
