@@ -121,7 +121,8 @@ class NewsController extends Controller
             //$path = Storage::disk('public')->delete($img_path);
 
             //s3利用の場合
-            $path = Storage::disk('s3')->delete($img_path);
+            $image = Storage::disk('s3')->url($img_path);
+            $path = Storage::disk('s3')->delete($image);
         }
 
         $file = $request->file('img_path');
@@ -130,7 +131,7 @@ class NewsController extends Controller
             //$path = $file->store('news_img','public');
 
             //s3利用の場合
-            $path = Storage::disk('s3')->putFile('news_img', $file, 'public');
+            $path = Storage::disk('s3')->putFile('/news_img', $file, 'public');
         }
         else{
             $path = null;
