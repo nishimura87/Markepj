@@ -48,7 +48,7 @@ class NewsController extends Controller
             //$image = $path;
 
             //s3利用の場合
-            $path = Storage::disk('s3')->putFile('news_img', $file, 'public');
+            $path = Storage::disk('s3')->putFile('/news_img', $file, 'public');
             $image = Storage::disk('s3')->url($path);
 
             return view('admin.confirmNews' ,compact(
