@@ -15,8 +15,6 @@ return [
 
     'default' => env('FILESYSTEM_DRIVER', 'local'),
 
-
-    //s3利用のため追記
     'cloud' => env('FILESYSTEM_CLOUD', 's3'),
 
     /*
@@ -52,7 +50,7 @@ return [
             'secret' => env('AWS_SECRET_ACCESS_KEY'),
             'region' => env('AWS_DEFAULT_REGION'),
             'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
+            'url' => env('AWS_URL')
         ],
 
     ],
@@ -70,17 +68,6 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-    ],
-
-    //s3利用のため追記
-    's3' => [
-            'driver' => 's3',
-            'key' => env('AWS_ACCESS_KEY_ID'),
-            'secret' => env('AWS_SECRET_ACCESS_KEY'),
-            'region' => env('AWS_DEFAULT_REGION'),
-            'bucket' => env('AWS_BUCKET'),
-            'url' => env('AWS_URL'),
-            'endpoint' => env('AWS_ENDPOINT'),
     ],
 
 ];
