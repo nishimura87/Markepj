@@ -154,7 +154,7 @@ class NewsController extends Controller
         //Storage::disk('public')->delete($img_path);
 
         //s3利用の場合
-        $path = Storage::disk('s3')->delete($img_path);
+        $path = Storage::disk('s3')->delete('/news_img',$img_path);
 
         return redirect()->route('news');
     }
