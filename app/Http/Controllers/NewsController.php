@@ -44,12 +44,10 @@ class NewsController extends Controller
         $file = $request->file('img_path');
 
         if (isset($file)) {
-            //$path = $file->store('news_img','public');
-            //$image = $path;
+            //$image = $file->store('news_img','public');
 
             //s3利用の場合
-            $path = Storage::disk('s3')->putFile('/news_img', $file, 'public');
-            $image = Storage::disk('s3')->url($path);
+            $image = Storage::disk('s3')->putFile('/news_img', $file, 'public');
 
             return view('admin.confirmNews' ,compact(
             'inputs','image'));
@@ -154,7 +152,7 @@ class NewsController extends Controller
         //Storage::disk('public')->delete($img_path);
 
         //s3利用の場合
-        $path = Storage::disk('s3')->delete('/news_img',$img_path);
+        $path = Storage::disk('s3')->delete($img_path);
 
         return redirect()->route('news');
     }
