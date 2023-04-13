@@ -78,7 +78,7 @@ class NewsController extends Controller
         $form['user_id'] =  Auth::id();
 
             if(isset($request->img_path)){
-                //$image = $request->img_path;
+                $image = $request->img_path;
 
                 //s3利用の場合
                 $image = Storage::disk('s3')->url($request->img_path);
@@ -121,8 +121,7 @@ class NewsController extends Controller
             //$path = Storage::disk('public')->delete($img_path);
 
             //s3利用の場合
-            $image = Storage::disk('s3')->url($img_path);
-            $path = Storage::disk('s3')->delete($image);
+            $path = Storage::disk('s3')->delete($img_path);
         }
 
         $file = $request->file('img_path');
