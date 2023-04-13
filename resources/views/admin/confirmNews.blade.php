@@ -11,7 +11,7 @@ enctype="multipart/form-data">
 
     <div class="form-item-con">
       @if(isset($image))
-        <img src="{{ $image }}" class="news_img">
+        <img src="https://marke-test.s3.amazonaws.com/{{ $image }}" class="news_img">
         <input type="hidden" name="img_path" value="{{ $image }}">
       @endif
       @if(empty($image))
