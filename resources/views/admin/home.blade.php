@@ -41,7 +41,7 @@
     @foreach ($items as $item)
     <li>
       <a href="{{route('editItem', ['id'=>$item->id])}}">
-        <img src="{{ \Storage::url($item->img_path1) }}" class="home_img">
+        <img src="{{ $item->img_path1 }}" class="home_img">
         <p class="item_list_txt">{{ $item->title }}</p>
         <p class="item_list_txt">¥ {{ number_format($item->price) }}</p>
       </a>

@@ -10,20 +10,20 @@ enctype="multipart/form-data">
   <div class="form-item-items">
     <div class="form-item-left">
       <div class="form-item-con">
-        <img src="{{ Storage::url($images[0]) }}" width="70%">
+        <img src="{{ $images[0] }}" width="70%">
       </div>
       <div class="form-item-img">
         @if(isset($images[1]))
-        <img class="img-sub" src="{{ Storage::url($images[1]) }}" >
+        <img class="img-sub" src="{{ $images[1] }}" >
         @endif
         @if(isset($images[2]))
-        <img class="img-sub" src="{{ Storage::url($images[2]) }}" >
+        <img class="img-sub" src="{{ $images[2] }}" >
         @endif
         @if(isset($images[3]))
-        <img class="img-sub" src="{{ Storage::url($images[3]) }}" >
+        <img class="img-sub" src="{{ $images[3] }}" >
         @endif
         @if(isset($images[4]))
-        <img class="img-sub" src="{{ Storage::url($images[4]) }}" >
+        <img class="img-sub" src="{{ $images[4] }}" >
         @endif
       </div>
       @foreach($images as $image)

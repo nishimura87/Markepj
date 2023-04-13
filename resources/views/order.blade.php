@@ -41,7 +41,7 @@
     </div>
     @foreach ($cartData as $key => $data)
     <ul class="cart_left_flex cart_left_border">
-      <img src="{{ \Storage::url($data['img_path1']) }}" class="cart_img">
+      <img src="{{ $data['img_path1'] }}" class="cart_img">
       <ul class="cart_item">
         <li class="cart_item_title">{{ $data['title'] }}</li>
         <li class="cart_item_info">品番：{{ $data['part_number'] }}</li>

@@ -44,24 +44,34 @@ class NewsController extends Controller
         $file = $request->file('img_path');
 
         if (isset($file)) {
-        $path = $file->store('news_img','public');
-        $image = $path;
+            //$path = $file->store('news_img','public');
+            //$image = $path;
 
-        return view('admin.confirmNews' ,compact(
+            //s3利用の場合
+            $path = Storage::disk('s3')->putFile('news_img', $file, 'public');
+            $image = Storage::disk('s3')->url($path);
+
+            return view('admin.confirmNews' ,compact(
             'inputs','image'));
         }
         
-
         return view('admin.confirmNews' ,compact(
         'inputs'));
     }
 
     public function storeNews(Request $request)
     {
+        
         $action = $request->get('action');
 
         if($action == 'back'){
-        return redirect('/admin/news/store')->withInput();
+            if(isset($request->img_path)){
+                //Storage::disk('public')->delete($request->img_path);
+
+                //s3利用の場合
+                $path = Storage::disk('s3')->delete($request->img_path);
+            }
+            return redirect('/admin/news/store')->withInput();
         }
 
         if($action == 'submit'){
@@ -102,14 +112,22 @@ class NewsController extends Controller
     public function updateNews(NewsRequest $request, $id)
     {
         $news = News::find($id);
-        $file = $request->file('img_path');
 
-        if (isset($file)) {
-            Storage::disk('public')->delete($file);
+        $img_path = $news->img_path;
+        if(isset($img_path)){
+            //$path = Storage::disk('public')->delete($img_path);
+
+            //s3利用の場合
+            $path = Storage::disk('s3')->delete($img_path);
         }
 
+        $file = $request->file('img_path');
+
         if(isset($request->img_path)){
-            $path = $file->store('news_img','public');
+            //$path = $file->store('news_img','public');
+
+            //s3利用の場合
+            $path = Storage::disk('s3')->putFile('news_img', $file, 'public');
         }
         else{
             $path = null;
@@ -129,7 +147,14 @@ class NewsController extends Controller
 
     public function deleteNews($id)
     {
+        $news_path = News::find($id);
+        $img_path = $news_path->img_path;
+
         $news = News::destroy($id);
+        //Storage::disk('public')->delete($img_path);
+
+        //s3利用の場合
+        $path = Storage::disk('s3')->delete($img_path);
 
         return redirect()->route('news');
     }

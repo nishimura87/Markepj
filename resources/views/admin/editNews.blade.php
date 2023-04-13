@@ -7,7 +7,7 @@
 <div class="show_news">
   
     @if(isset($news['img_path']))
-      <img src="{{ Storage::url($news['img_path']) }}" class="news_img">
+      <img src="{{ $news['img_path'] }}" class="news_img">
     @endif
 
   <div class="news-title">

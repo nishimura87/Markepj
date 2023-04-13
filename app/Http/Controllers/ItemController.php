@@ -86,7 +86,10 @@ class ItemController extends Controller
             if (isset($request->img_path)) {
                 for ($i = 0; $i <= 4; $i++){
                     if(isset($request->img_path[$i])){
-                    Storage::disk('public')->delete($request->img_path[$i]);
+                    //Storage::disk('public')->delete($request->img_path[$i]);
+
+                    //s3利用の場合
+                    Storage::disk('s3')->delete($request->img_path[$i]);
                     }
                 }
             }
@@ -147,12 +150,19 @@ class ItemController extends Controller
         if (isset($files)) {
             for ($i = 0; $i <= 4; $i++){
                 if(isset($image[$i])){
-                    Storage::disk('public')->delete($image[$i]);
+                    //Storage::disk('public')->delete($image[$i]);
+
+                    //s3利用の場合
+                    Storage::disk('s3')->delete($image[$i]);
                 }
             }
             foreach($files as $file){
-            $path = $file->store('img','public');
-            $fix_path[] = $path;
+            //$path = $file->store('img','public');
+            //$fix_path[] = $path;
+
+            //s3利用の場合
+            $path = Storage::disk('s3')->putFile('item_img', $file, 'public');
+            $fix_path[] = Storage::disk('s3')->url($path);
             }
         }
 
@@ -200,7 +210,10 @@ class ItemController extends Controller
         if (isset($image)) {
             for ($i = 0; $i <= 4; $i++){
                 if(isset($image[$i])){
-                    Storage::disk('public')->delete($image[$i]);
+                    //Storage::disk('public')->delete($image[$i]);
+
+                    //s3利用の場合
+                    Storage::disk('s3')->delete($image[$i]);
                 }
             }
         }
@@ -230,8 +243,12 @@ class ItemController extends Controller
 
         if (isset($files)) {
         foreach($files as $file){
-        $path = $file->store('img','public');
-        $images[] = $path;
+        //$path = $file->store('img','public');
+        //$images[] = $path;
+
+        //s3利用の場合
+        $path = Storage::disk('s3')->putFile('item_img', $file, 'public');
+        $fix_path[] = Storage::disk('s3')->url($path);
         }
 
         return view('admin.confirmItem', compact(
@@ -270,8 +287,8 @@ class ItemController extends Controller
 
             unset($data);
             return view('cart', compact('cartData','totalData','count','totalAmount',));
-            } 
-            else {
+        } 
+        else {
             return view('cart', compact('user'));
         }
     }

@@ -11,9 +11,12 @@ enctype="multipart/form-data">
 
     <div class="form-item-con">
       @if(isset($image))
-        <img src="{{ Storage::url($image) }}" class="news_img">
+        <img src="{{ $image }}" class="news_img">
+        <input type="hidden" name="img_path" value="{{ $image }}">
       @endif
-      <input type="hidden" name="img_path" value="{{ $image }}">
+      @if(empty($image))
+        <img src="/images/no_image.jpg" class="news_img">
+      @endif
       </div>
     
     <div class="news-title">

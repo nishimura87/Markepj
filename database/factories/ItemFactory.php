@@ -14,17 +14,19 @@ class ItemFactory extends Factory
      */
     public function definition()
     {
-
         $size = array("S" , "M" , "L");
         
         $images = array();
-        
         $randPath = rand(1, 4);
         for ($i = 0; $i <= $randPath; $i++){
-            $file[$i] = $this->faker->image(storage_path('app/public/img'), 500, 500);
-            $path[$i] = str_replace('/Applications/MAMP/htdocs/Markepj/storage/app/public/img', '/img', $file[$i]);
+            // $file[$i] = $this->faker->image(storage_path('app/public/img'), 500, 500);
+            // $path[$i] = str_replace('/Applications/MAMP/htdocs/Markepj/storage/app/public/img', '/img', $file[$i]);
+
+            //s3利用の場合
+            $file[$i] = $this->faker->image(500, 500);
+            $img_path[$i] = Storage::disk('s3')->putFile('item_img', $file[$i], 'public');
+            $path[$i] = Storage::disk('s3')->url($img_path[$i]);
         }
-        
         for ($i = 0; $i <= 4; $i++){
             if(isset($path[$i])){
                 $images[$i] = $path[$i];

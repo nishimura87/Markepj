@@ -21,7 +21,7 @@ class CreateItemsTable extends Migration
             $table->string('color');
             $table->string('size');
             $table->integer('quantity');
-            $table->integer('part_number');
+            $table->string('part_number');
             $table->text('info');
             $table->string('material');
             $table->string('img_path1');

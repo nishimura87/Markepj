@@ -11,7 +11,7 @@ enctype="multipart/form-data">
 
     <p class="form-item-label">画像</p>
     @if(isset($news['img_path']))
-      <img class="news_img" src="{{ Storage::url($news['img_path']) }}" >
+      <img class="news_img" src="{{ $news['img_path'] }}" >
     @endif
 
     <div class="form-item-con1">

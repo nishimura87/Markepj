@@ -40,7 +40,7 @@ class OrderController extends Controller
                     'postcode' => $request->postcode,
                     'address' => $request->address,
                     'building' => $request->building,
-                    'order_number' => $code,
+                    'order_number' => "$code",
                 ]);
                 }
                 else{
@@ -51,7 +51,7 @@ class OrderController extends Controller
                     'address' => $user->postcode,
                     'postcode' => $user->address,
                     'building' => $user->building,
-                    'order_number' => $code,
+                    'order_number' => "$code",
                 ]);
 
                 }
@@ -99,7 +99,7 @@ class OrderController extends Controller
         Mail::send('orderSendmail', [
             'user' => $user,
             'addressee' => $addressee,
-            'code' => $code,
+            'code' => "$code",
             'orders' => $orders,
             'totalData' => $totalData,
             'defaultCard' => $defaultCard
@@ -111,7 +111,7 @@ class OrderController extends Controller
         Mail::send('orderReceivemail', [
             'user' => $user,
             'addressee' => $addressee,
-            'code' => $code,
+            'code' => "$code",
             'orders' => $orders,
             'totalData' => $totalData,
             'defaultCard' => $defaultCard
