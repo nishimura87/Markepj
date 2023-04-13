@@ -17,7 +17,7 @@
       <li>
         <a href="{{route('editNews', ['id'=>$news->id])}}">
           @if(isset($news->img_path))
-          <img src="{{ Storage::disk('s3')->url("news_img/$news->img_path") }}" class="home_img">
+          <img src="{{ Storage::disk('s3')->url("news_img/{$news->img_path}") }}" class="home_img">
           @endif
           @if(empty($news->img_path))
           <img src="/images/no_image.jpg" class="home_img">
