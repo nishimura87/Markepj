@@ -40,7 +40,7 @@
   <ul>
     @foreach ($items as $item)
     <li>
-      <a href="{{route('editItem', ['id'=>$item->id])}}">
+      <a class="item_list_img" href="{{route('editItem', ['id'=>$item->id])}}">
         <img src="https://marke-test.s3.amazonaws.com/{{ $item->img_path1 }}" class="home_img">
         <p class="item_list_txt">{{ $item->title }}</p>
         <p class="item_list_txt">¥ {{ number_format($item->price) }}</p>

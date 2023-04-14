@@ -220,6 +220,10 @@ section .sub_img dl dt img {
   min-height: 180px;
 }
 
+.item_list_img {
+  text-decoration: none;
+}
+
 .register_update {
   width: 80%;
   margin: 0 auto;
@@ -441,6 +445,7 @@ section .sub_img dl dt img {
 }
 
 .param_txt {
+  text-decoration: none;
   font-weight: bold;
 }
 
@@ -534,6 +539,7 @@ section .sub_img dl dt img {
 
 .item_list li {
   width: 18%;
+  height: 240px;
   margin: 1%;
 }
 
