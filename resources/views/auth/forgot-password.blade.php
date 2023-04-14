@@ -21,10 +21,10 @@
                 <div class="form-item-con">
                     <input type="email" class="input_text1" name=email value="{{ old('email') }}">
                 </div>
+                @error('email')
+                <div class="alert alert-danger">{{ $message }}</div>
+                @enderror
             </div>
-            @error('email')
-            <div class="alert alert-danger">{{ $message }}</div>
-            @enderror
 
             <div class="flex items-center justify-end mt-4">
                 <x-button>

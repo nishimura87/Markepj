@@ -20,7 +20,7 @@
   <div class="header_right flex">
     <ul class="nav">
       <li class="has-sub">
-        <a class="sub-item" href="{{ route('infoUser') }}"><img src="/images/user.png" width="25" height="25"></a>
+        <a class="sub-item"><img src="/images/user.png" width="25" height="25"></a>
         <ul class="sub">
           @guest
           <li>
