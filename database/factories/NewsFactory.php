@@ -21,7 +21,7 @@ class NewsFactory extends Factory
         // $path = str_replace('/Applications/MAMP/htdocs/Markepj/storage/app/public/news_img', '/news_img', $file);
 
         //s3利用の場合
-        $file = $this->faker->image(NULL,500, 500 ,NULL,false);
+        $file = $this->faker->image('/news_img',500, 500 ,NULL,false);
         $path = Storage::disk('s3')->putFile('/news_img', $file, 'public');
 
         return [

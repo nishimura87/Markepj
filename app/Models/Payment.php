@@ -9,14 +9,6 @@ class Payment extends Model
 {
     use HasFactory;
 
-    /**
-     * Stripe上に「顧客」を登録するための関数
-     *
-     * @param String $token・・・・・Stripe上のtoken（フロントエンドで作成）
-     * @param object $user ・・・・・カード登録をするユーザーの情報
-     * @param object $customer・・・Stripe上に登録する顧客オブジェクト
-     */
-
     public static function setCustomer($token, $user)
     {
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret'));
@@ -30,15 +22,7 @@ class Payment extends Model
                 'description' => $user->id
             ]);
         } catch(\Stripe\Exception\CardException $e) {
-            /*
-             * カード登録失敗時には現段階では一律で別の登録カードを入れていただくように
-             * 促すメッセージで統一。
-             * カードエラーの類としては以下があるとのこと
-             * １、カードが決済に失敗しました
-             * ２、セキュリティーコードが間違っています
-             * ３、有効期限が間違っています
-             * ４、処理中にエラーが発生しました
-             *  */
+
             return false;
         }
 
@@ -52,14 +36,6 @@ class Payment extends Model
         return false;
     }
 
-    /**
-     * Stripe上の「顧客」情報を更新するための関数
-     *
-     * @param String $token・・・・・Stripe上のtoken（フロントエンドで作成）
-     * @param object $user ・・・・・カード登録をするユーザーの情報
-     * @param object $customer・・・Stripe上に登録されている顧客オブジェクト
-     * @param object $card・・・・・Stripe上に登録されているクレジットカード情報のオブジェクト
-     */
     public static function updateCustomer($token, $user)
     {
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret'));
@@ -72,15 +48,7 @@ class Payment extends Model
                 'description' => $user->id
             ]);
         } catch(\Stripe\Exception\CardException $e) {
-            /*
-             * カード登録失敗時には現段階では一律で別の登録カードを入れていただくように
-             * 促すメッセージで統一。（メッセージ自体はController側で制御しています）
-             * カードエラーの類としては
-             * １、カードが決済に失敗しました
-             * ２、セキュリティーコードが間違っています
-             * ３、有効期限が間違っています
-             * ４、処理中にエラーが発生しました
-             *  */
+
             return false;
         }
         $targetCustomer = null;
@@ -93,15 +61,7 @@ class Payment extends Model
         }
         return false;
     }
- 
-    /**
-     * Stripe上に現在登録されている顧客の「使用カード」の情報を取得するための関数
-     *
-     * @param String $token・・・・・Stripe上のtoken（フロントエンドで作成）
-     * @param object $user ・・・・・カード登録をするユーザーの情報
-     * @param object $customer・・・Stripe上に登録されている顧客オブジェクト
-     * @param object $default_card・・・・・Stripe上から取得した顧客の「使用カード」オブジェクト
-     */
+
     protected static function getDefaultcard($user)
     {
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret'));
@@ -126,12 +86,6 @@ class Payment extends Model
         return $default_card;
     }
 
-    /**
-     * Stripe上に現在登録されている顧客のカード情報を削除するための関数
-     *
-     * @param object $user ・・・・・カード削除をするユーザーの情報
-     * @param object $customer・・・Stripe上に登録されている顧客オブジェクト
-     */
     protected static function deleteCard($user)
     {
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret'));

@@ -44,10 +44,11 @@ class NewsController extends Controller
         $file = $request->file('img_path');
 
         if (isset($file)) {
-            //$image = $file->store('news_img','public');
+            $image = $file->store('news_img','public');
+            dd($image);
 
             //s3利用の場合
-            $image = Storage::disk('s3')->putFile('/news_img', $file, 'public');
+            //$image = Storage::disk('s3')->putFile('/news_img', $file, 'public');
 
             return view('admin.confirmNews' ,compact(
             'inputs','image'));
