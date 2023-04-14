@@ -47,10 +47,10 @@
       </div>
       <nav class="sp-nav">
         <ul class="sp-nav-ul">
-          <li><a href="/marke">TOP</a></li>
-          <li><a href="/marke/about">ABOUT</a></li>
-          <li><a href="/marke/news">NEWS</a></li>
-          <li><a href="/marke/contact">CONTACT</a></li>
+          <li><a href="/marke" class="hamburger_txt">TOP</a></li>
+          <li><a href="/marke/about" class="hamburger_txt">ABOUT</a></li>
+          <li><a href="/marke/news" class="hamburger_txt">NEWS</a></li>
+          <li><a href="/marke/contact" class="hamburger_txt">CONTACT</a></li>
         </ul>
       </nav>
       <div class="black-bg" id="js-black-bg"></div>

@@ -23,7 +23,7 @@ class ItemFactory extends Factory
             // $path[$i] = str_replace('/Applications/MAMP/htdocs/Markepj/storage/app/public/img', '/img', $file[$i]);
 
             //s3利用の場合
-            $file[$i] = $this->faker->image($dir,500, 500 ,NULL,false);
+            $file[$i] = $this->faker->image(NULL,500, 500 ,NULL,false);
             $path[$i] = Storage::disk('s3')->putFile('item_img', $file[$i], 'public');
         }
         for ($i = 0; $i <= 4; $i++){

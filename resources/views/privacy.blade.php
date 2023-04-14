@@ -84,16 +84,16 @@
     （１） 当ショップのサービスは、Cookie及びこれに類する技術を利用することがあります。これらの技術は、当ショップによる当ショップのサービスの利用状況等の把握に役立ち、サービス向上に資するものです。Cookieを無効化されたいユーザーは、ウェブブラウザの設定を変更することによりCookieを無効化することができます。但し、Cookieを無効化すると、当ショップのサービスの一部の機能をご利用いただけなくなる場合があります。<br>
     （２） 当ショップは、当ショップサービスが提供するサービスの利用状況等を調査・分析するため、本サービス上に Google LLCが提供する Google アナリティクスを利用しています。Googleアナリティクスでデータが収集、処理される仕組みその他Googleアナリティクスの詳しい情報につきましては、同社のサイトをご覧ください。<br>
     Google アナリティクス 利用規約：<br>
-    https://www.google.com/analytics/terms/jp.html<br>
+    <a href="https://www.google.com/analytics/terms/jp.html" class="privacy_link">https://www.google.com/analytics/terms/jp.html</a><br>
     お客様が Google パートナーのサイトやアプリを使用する際の Google によるデータ使用：<br>
-    https://www.google.com/intl/ja/policies/privacy/partners/<br>
+    <a href="https://www.google.com/intl/ja/policies/privacy/partners/" class="privacy_link">https://www.google.com/intl/ja/policies/privacy/partners/</a><br>
     Google プライバシーポリシー：<br>
-    http://www.google.com/intl/ja/policies/privacy/<br><br>
+    <a href="http://www.google.com/intl/ja/policies/privacy/" class="privacy_link">http://www.google.com/intl/ja/policies/privacy/</a><br><br>
     
     なお、お客様はご自身のデータが Google アナリティクスで使用されることを望まない場合は、Google 社の提供する Google アナリティクス オプトアウト アドオンをご利用ください。<br><br>
     
     Google アナリティクス オプトアウト アドオン：<br>
-    https://tools.google.com/dlpage/gaoptout<br>
+    <a href="https://tools.google.com/dlpage/gaoptout" class="privacy_link">https://tools.google.com/dlpage/gaoptout</a><br>
     （３） 本サービスでは「Google Analyticsの広告向けの機能」を有効にしており、下記の機能を利用し、広告やサイト改善のためDoubleClick CookieなどのサードパーティCookieを利用しています。<br><br>
     
     Google Analyticsリマーケティング<br>
