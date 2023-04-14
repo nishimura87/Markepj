@@ -161,8 +161,8 @@ class ItemController extends Controller
             //$fix_path[] = $path;
 
             //s3利用の場合
-            $path = Storage::disk('s3')->putFile('item_img', $file, 'public');
-            $fix_path[] = Storage::disk('s3')->url($path);
+            $path = Storage::disk('s3')->putFile('/item_img', $file, 'public');
+            $fix_path[] = $path;
             }
         }
 
@@ -247,8 +247,8 @@ class ItemController extends Controller
         //$images[] = $path;
 
         //s3利用の場合
-        $path = Storage::disk('s3')->putFile('item_img', $file, 'public');
-        $fix_path[] = Storage::disk('s3')->url($path);
+        $path = Storage::disk('s3')->putFile('/item_img', $file, 'public');
+        $fix_path[] = $path;
         }
 
         return view('admin.confirmItem', compact(

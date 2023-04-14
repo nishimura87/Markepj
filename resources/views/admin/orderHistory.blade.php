@@ -6,7 +6,7 @@
 <div class="order_history">
   @foreach($ordersAll as $order)
   <div class="order_history_con">
-    <img class="order_history_img_path" src="{{ $order->item->img_path1 }}">
+    <img class="order_history_img_path" src="https://marke-test.s3.amazonaws.com/{{ $order->item->img_path1 }}">
     <div class="order_history_info">
       <div class="order_history_info_txt">
         <p class="order_history_info_txt_title">{{ $order->item->title }}</p>

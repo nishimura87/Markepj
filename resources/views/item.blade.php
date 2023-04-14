@@ -11,33 +11,33 @@
     <div class="form-item-left">
       <section>
       <div class="main_img">
-        <img src="{{ $item['img_path1'] }}" width="70%">
+        <img src="https://marke-test.s3.amazonaws.com/{{ $item['img_path1'] }}" width="70%">
       </div>
       <div class="sub_img">
         <dl>
           @if(isset($item['img_path1']))
           <dt>
-            <img src="{{ $item['img_path1'] }}">
+            <img src="https://marke-test.s3.amazonaws.com/{{ $item['img_path1'] }}">
           </dt><dd></dd>
           @endif
           <dt>
           @if(isset($item['img_path2']))
-            <img src="{{ $item['img_path2'] }}">
+            <img src="https://marke-test.s3.amazonaws.com/{{ $item['img_path2'] }}">
           </dt><dd></dd>
           @endif
           @if(isset($item['img_path3']))
           <dt>
-            <img src="{{ $item['img_path3'] }}">
+            <img src="https://marke-test.s3.amazonaws.com/{{ $item['img_path3'] }}">
           </dt><dd></dd>
           @endif
           @if(isset($item['img_path4']))
           <dt>
-            <img src="{{ $item['img_path4'] }}">
+            <img src="https://marke-test.s3.amazonaws.com/{{ $item['img_path4'] }}">
           </dt><dd></dd>
           @endif
           @if(isset($item['img_path5']))
           <dt>
-            <img src="{{ $item['img_path5'] }}">
+            <img src="https://marke-test.s3.amazonaws.com/{{ $item['img_path5'] }}">
           </dt><dd></dd>
           @endif
         </dl>

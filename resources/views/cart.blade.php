@@ -22,7 +22,7 @@
     @if(isset($cartData))
     @foreach ($cartData as $key => $data)
     <div class="cart_left_flex">
-      <img src="{{ $data['img_path1'] }}" class="cart_img">
+      <img src="https://marke-test.s3.amazonaws.com/{{ $data['img_path1'] }}" class="cart_img">
       <div class="cart_item">
         <p class="cart_item_title">{{ $data['title'] }}</p>
         <p class="cart_item_info">品番：{{ $data['part_number'] }}</p>

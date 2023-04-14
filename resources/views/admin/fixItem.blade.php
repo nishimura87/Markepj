@@ -12,19 +12,19 @@ enctype="multipart/form-data">
     <p class="form-item-label">画像<span class ="red"> ※</span></p>
     <div class="form-item-fix-img">
       @if(isset($item['img_path1']))
-      <img class="img-sub2" src="{{ $item['img_path1'] }}" >
+      <img class="img-sub2" src="https://marke-test.s3.amazonaws.com/{{ $item['img_path1'] }}" >
       @endif
       @if(isset($item['img_path2']))
-      <img class="img-sub2" src="{{ $item['img_path2'] }}" >
+      <img class="img-sub2" src="https://marke-test.s3.amazonaws.com/{{ $item['img_path2'] }}" >
       @endif
       @if(isset($item['img_path3']))
-      <img class="img-sub2" src="{{ $item['img_path3'] }}" >
+      <img class="img-sub2" src="https://marke-test.s3.amazonaws.com/{{ $item['img_path3'] }}" >
       @endif
       @if(isset($item['img_path4']))
-      <img class="img-sub2" src="{{ $item['img_path4'] }}" >
+      <img class="img-sub2" src="https://marke-test.s3.amazonaws.com/{{ $item['img_path4'] }}" >
       @endif
       @if(isset($item['img_path5']))
-      <img class="img-sub2" src="{{ $item['img_path5'] }}" >
+      <img class="img-sub2" src="https://marke-test.s3.amazonaws.com/{{ $item['img_path5'] }}" >
       @endif
     </div>
     <div class="form-item-con1">
