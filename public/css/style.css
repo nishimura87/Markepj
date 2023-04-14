@@ -393,6 +393,7 @@ section .sub_img dl dt img {
 }
 
 .add_btn {
+  text-decoration: none;
   background-color: rgb(228, 106, 40);
   color: #fff;
   padding: 8px 15px;

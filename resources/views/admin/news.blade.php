@@ -15,7 +15,7 @@
     <ul>
       @foreach ($news as $news)
       <li>
-        <a href="{{route('editNews', ['id'=>$news->id])}}">
+        <a class="item_list_img" href="{{route('editNews', ['id'=>$news->id])}}">
           @if(isset($news->img_path))
           <img src="https://marke-test.s3.amazonaws.com/{{ $news->img_path }}" class="home_img">
           @endif
