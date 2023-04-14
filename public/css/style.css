@@ -222,6 +222,7 @@ section .sub_img dl dt img {
 
 .item_list_img {
   text-decoration: none;
+  color: black;
 }
 
 .register_update {
@@ -517,7 +518,6 @@ section .sub_img dl dt img {
 }
 
 .home_img {
-  height: 70%;
   margin: 0 auto;
 }
 
@@ -539,7 +539,6 @@ section .sub_img dl dt img {
 
 .item_list li {
   width: 18%;
-  height: 240px;
   margin: 1%;
 }
 
