@@ -1632,6 +1632,11 @@ footer {
     border-left-width: 1px;
   }
 }
+@media (max-width: 768px) {
+  .company {
+    width: 100px;
+  }
+}
 @media (min-width: 1024px) {
 
   .lg\:px-8 {

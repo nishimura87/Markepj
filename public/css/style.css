@@ -688,6 +688,7 @@ table td:nth-child(1) {
 }
 
 .back_news_btn {
+  text-decoration: none;
   padding: 10px 80px;
   border-radius: 10px;
   color: #fff;
@@ -1203,12 +1204,12 @@ table td:nth-child(1) {
     }
 
     .sub-item {
-      font-size: 13px;
+      font-size: 10px;
       padding: 0.7em 0;
     }
 
     .sub>li>a {
-      font-size: 14px;
+      font-size: 12px;
     }
 
     .main_title {
@@ -1230,8 +1231,9 @@ table td:nth-child(1) {
     }
   
     .category_list_item {
-      top: 3px;
+      top: 4px;
       left: 0px;
+      width: 80px;
     }
   
     .main_title2_left {
@@ -1466,5 +1468,9 @@ table td:nth-child(1) {
 
     .cart_left_addressee {
       font-size: 13px;
+    }
+
+    .category_list_name {
+      width: 80px;
     }
 }
