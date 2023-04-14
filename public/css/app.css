@@ -1636,6 +1636,10 @@ footer {
   .company {
     width: 100px;
   }
+  
+  .company_title {
+    font-size: 18px;
+  }
 }
 @media (min-width: 1024px) {
 
