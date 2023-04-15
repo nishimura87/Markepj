@@ -88,7 +88,7 @@
       <a class="order">¥{{ number_format($totalAmount) }}</a>
     </div>
   </div>
-  <form method="POST" action="{{ route('charge') }}">
+  <form method="POST" action="{{ route('order') }}">
     @csrf
     <div class="item_order_cart">
       <input name="total" value="{{ $totalAmount }}" type="hidden">
