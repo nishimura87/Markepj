@@ -813,6 +813,7 @@ table td:nth-child(1) {
 }
 
 .cart_noitem_btn {
+  text-decoration: none;
   padding: 10px 100px;
   border-radius: 5px;
   color: #fff;
