@@ -2,6 +2,7 @@
 
 -   Marke
 -   ファッション EC サイトで商品販売ができるアプリケーション
+<img width="1423" alt="ホーム画像" src="https://user-images.githubusercontent.com/107283362/232210746-5a58ba65-cf87-4f80-8cd6-aa9f40341361.png">
 
 ## 作成した目的
 
