@@ -285,10 +285,10 @@ class ItemController extends Controller
             $count = count($cartData);
 
             unset($data);
-            return view('cart', compact('cartData','totalData','count','totalAmount',));
+            return view('member.cart', compact('cartData','totalData','count','totalAmount',));
         } 
         else {
-            return view('cart', compact('user'));
+            return view('member.cart', compact('user'));
         }
     }
 
@@ -445,7 +445,7 @@ class ItemController extends Controller
         if ($user->stripe_id){
         $defaultCard = Payment::getDefaultcard($user);
 
-        return view('order', compact('cartData','totalData','count','totalAmount','user','items','addressee','defaultCard'));
+        return view('member.order', compact('cartData','totalData','count','totalAmount','user','items','addressee','defaultCard'));
         }
         
         else {
@@ -453,6 +453,6 @@ class ItemController extends Controller
             return redirect()->route('infoPayment')->with('errors', $errors);
         }
 
-        return view('order', compact('cartData','totalData','count','totalAmount','user','items','addressee','defaultCard'));
+        return view('member.order', compact('cartData','totalData','count','totalAmount','user','items','addressee','defaultCard'));
     }
 }

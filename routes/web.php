@@ -20,7 +20,7 @@ Route::get('/marke/law', [ShopController::class, 'law'])->name('law');
 
 Route::get('/marke/contact', [ContactController::class, 'index'])->name('index');
 Route::post('/marke/contact/confirm', [ContactController::class, 'confirm'])->name('confirm');
-Route::post('marke/contact/thanks', [ContactController::class, 'send'])->name('send');
+Route::post('marke/contact/completed', [ContactController::class, 'send'])->name('send');
 
 Route::get('/member', [MemberController::class, 'infoUser'])->name('infoUser');
 
@@ -42,12 +42,11 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::post('/admin/item/store/confirm', [ItemController::class, 'confirmItem'])->name('confirmItem');
     Route::post('/admin/item/store/compleate', [ItemController::class, 'storeItem'])->name('storeItem');
 
-    Route::get('/marke/admin/news', [NewsController::class, 'manageNews'])->name('manageNews');
     Route::get('/admin/news/store', [NewsController::class, 'createNews'])->name('createNews');
+    Route::get('/admin/news/{id}', [NewsController::class, 'editNews'])->name('editNews');
     Route::get('/admin/news/fix/{id}', [NewsController::class, 'fixNews'])->name('fixNews');
     Route::post('/admin/news/store/confirm', [NewsController::class, 'confirmNews'])->name('confirmNews');
     Route::post('/admin/news/store/compleate', [NewsController::class, 'storeNews'])->name('storeNews');
-    Route::get('/admin/news/{id}', [NewsController::class, 'editNews'])->name('editNews');
     Route::post('/admin/news/update/{id}', [NewsController::class, 'updateNews'])->name('updateNews');
     Route::post('/admin/news/{id}', [NewsController::class, 'deleteNews'])->name('deleteNews');
 });
@@ -69,15 +68,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::post('/marke/cart/remove', [ItemController::class, 'removeCart'])->name('removeCart');
     Route::post('/marke/cart/update', [ItemController::class, 'updateCart'])->name('updateCart');
     Route::post('/marke/cart/order', [ItemController::class, 'orderItem'])->name('orderItem');
-    Route::post('/marke/cart/purchase', [ItemController::class, 'purchaseItem'])->name('purchaseItem');
 
     Route::get('/member/payment', [PaymentController::class, 'infoPayment'])->name('infoPayment');
     Route::get('/member/payment/form', [PaymentController::class, 'createPayment'])->name('createPayment');
     Route::post('/member/payment/form', [PaymentController::class, 'storePayment'])->name('storePayment');
     Route::post('/member/payment/destroy', [PaymentController::class, 'destroyPayment'])->name('destroyPayment');
 
-    Route::get('/marke/cart/charge/complete', [OrderController::class, 'completeCharge'])->name('completeCharge');
-    Route::post('/marke/cart/charge/complete', [OrderController::class, 'charge'])->name('charge');
+    Route::get('/marke/cart/order/complete', [OrderController::class, 'completeOrder'])->name('completeOrder');
+    Route::post('/marke/cart/order/complete', [OrderController::class, 'order'])->name('order');
 });
 
 

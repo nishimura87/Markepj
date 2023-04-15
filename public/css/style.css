@@ -805,6 +805,7 @@ table td:nth-child(1) {
   color: blue;
   font-weight: 100;
   font-size: 14px;
+  text-decoration: none;
 }
 
 .cart_noitem {
@@ -816,6 +817,7 @@ table td:nth-child(1) {
   border-radius: 5px;
   color: #fff;
   background-color: rgb(147, 147, 147);
+  text-decoration: none;
 }
 
 .cart_left_flex{

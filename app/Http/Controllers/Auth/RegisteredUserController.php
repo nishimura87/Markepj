@@ -53,7 +53,6 @@ class RegisteredUserController extends Controller
             'email.required' => 'メールアドレスは入力必須です',
             'email.string' => 'メールアドレスは文字列で入力してください',
             'email.email' => 'メールアドレス形式で入力してください',
-            'email.min' => 'メールアドレスは８文字以上で入力してください',
             'email.max' => 'メールアドレスは191文字以下で入力してください',
             'email.unique' => 'そのメールアドレスは使われています',
             'password.required' => 'パスワードは入力必須です',

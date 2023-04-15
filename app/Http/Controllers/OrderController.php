@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
-    public function charge(Request $request){
+    public function order(Request $request){
         
         \Stripe\Stripe::setApiKey(\Config::get('payment.stripe_secret'));
 
@@ -62,13 +62,13 @@ class OrderController extends Controller
         }
         
         try {
-            $chargeOject = [
+            $orderOject = [
                 'amount'      => $request->total,
                 'currency'    => 'jpy',
                 'customer'    => $user->stripe_id,
             ];
 
-            $charge = \Stripe\Charge::create($chargeOject);
+            $order = \Stripe\Charge::create($orderOject);
 
         } catch (\Stripe\Exception\CardException $e) {
             $body = $e->getJsonBody();
@@ -77,10 +77,10 @@ class OrderController extends Controller
             return redirect()->route('cartList')->with('errors', "決済に失敗しました。しばらく経ってから再度お試しください。");
         }
 
-        return redirect()->route('completeCharge');
+        return redirect()->route('completeOrder');
     }
 
-    public function completeCharge(Request $request){
+    public function completeOrder(Request $request){
 
         $code = session()->get('code');
         $orders = Order::where('order_number', '=',$code)->get();
@@ -125,7 +125,7 @@ class OrderController extends Controller
 
         
 
-    return view('completeCharge',compact('date','user','code'));
+    return view('member.completeOrder',compact('date','user','code'));
 
     }
 }
