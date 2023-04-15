@@ -1465,6 +1465,7 @@ footer {
   margin: 0 10px;
 }
 .important_con {
+  text-decoration: none;
   margin-top: 10px;
   margin-left: 30px;
   font-size: 12px;
