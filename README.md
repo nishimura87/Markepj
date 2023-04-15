@@ -36,8 +36,7 @@
 ![テーブル設計](https://user-images.githubusercontent.com/107283362/232210941-c90bcc02-73c6-4201-94e4-6897e6d73c67.jpg)
 
 ## ER 図
-![ER図](https://user-images.githubusercontent.com/107283362/232211257-03e18d05-f5d3-48d9-bfc9-cf6db511ab43.jpg)
-
+<img width="561" alt="ER図" src="https://user-images.githubusercontent.com/107283362/232212491-732b4657-2e7b-4e4f-abaa-eed61299d7f9.png">
 ## 他に記載することがあれば記述する
 
 1. 管理者ログイン方法
