@@ -2,7 +2,7 @@
 
 -   Marke
 -   ファッション EC サイトで商品販売ができるアプリケーション
-<img width="1423" alt="ホーム画像" src="https://user-images.githubusercontent.com/107283362/232210746-5a58ba65-cf87-4f80-8cd6-aa9f40341361.png">
+    <img width="1423" alt="ホーム画像" src="https://user-images.githubusercontent.com/107283362/232210746-5a58ba65-cf87-4f80-8cd6-aa9f40341361.png">
 
 ## 作成した目的
 
@@ -29,13 +29,29 @@
 
 ## 使用技術（実行環境）
 
--   Laravel:8.83.27
+1. フロントエンド
+
+-   HTML
+-   CSS
+-   javasqript
+
+2. バックエンド
+
 -   php:4.1.16
+-   Laravel:8.83.27
+
+3. インフラ
+
+-   nginx:1.22.1
+-   MySQL:8.0.32
+-   AWS S3
 
 ## テーブル設計
+
 ![テーブル設計](https://user-images.githubusercontent.com/107283362/232210941-c90bcc02-73c6-4201-94e4-6897e6d73c67.jpg)
 
 ## ER 図
+
 <img width="561" alt="ER図" src="https://user-images.githubusercontent.com/107283362/232212491-732b4657-2e7b-4e4f-abaa-eed61299d7f9.png">
 ## 他に記載することがあれば記述する
 
