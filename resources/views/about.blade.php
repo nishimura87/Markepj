@@ -25,6 +25,10 @@
         <a class=about_image_txt>instagram</a>
       </div>
     </div>
+    <div class="about_qrcode_con">
+        <div class="about_qrcode_home">{!! QrCode::size(40)->generate(route('home'))!!}</div>
+        <a class=about_image_txt>ホームページ</a>
+      </div>
   </div>
   <div class="about_map">
     <div id="map" class="about_map_size"></div>
