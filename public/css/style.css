@@ -157,6 +157,15 @@ section .sub_img dl dt img {
   margin-left: 30px;
 }
 
+.about_qrcode_con {
+  margin-top: 20px;
+  margin-left: 18px;
+}
+
+.about_qrcode_home {
+  margin-left: 13px;
+}
+
 .about_image_sns {
   margin: 0 auto;
 }
